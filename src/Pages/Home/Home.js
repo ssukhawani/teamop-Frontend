@@ -25,7 +25,7 @@ export const Span = styled.span`
 function Home() {
   const count = useSelector((state) => state.counter.value);
   const dispatch = useDispatch();
-  
+
   return (
     <StyledApp>
       <div>

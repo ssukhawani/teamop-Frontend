@@ -5,7 +5,7 @@ import Login from "Pages/Login/Login";
 import Register from "Pages/Register/Register";
 import Detail from "Pages/DetailView/Detail";
 import ProtectedRoute from "Routes/protected-route";
-
+import SelectComponent from "Shared/Components/Select";
 function App() {
   const isLoggedIn = false;
 
@@ -18,6 +18,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route exact path="/detail/:id" element={<Detail />} />
         </Route>
+        <Route path="/select" element={<SelectComponent />} />
       </Routes>
     </BrowserRouter>
   );

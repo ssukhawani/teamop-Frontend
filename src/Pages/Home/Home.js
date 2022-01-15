@@ -1,6 +1,8 @@
 import DashboardLayout from "Shared/Dashboard/Dashboard";
 import React from "react";
 import tw, { styled } from "twin.macro";
+import { Select } from "antd";
+import Detail from "Pages/DetailView/Detail";
 
 export const StyledApp = styled.div`
   ${tw`flex justify-center items-center flex-col  bg-gray-200 h-full`}
@@ -17,12 +19,17 @@ export const Button = styled.button`
   }
 `;
 
-
 function Home() {
+  const { Option } = Select;
+  const optionsData = [{ label: "one", value: 1 }];
+  function onChange(value, option) {
+    console.log(option["value"]);
+    console.log(`selected ${option}`);
+  }
 
   return (
     <DashboardLayout>
-      Home
+      <Detail />
     </DashboardLayout>
   );
 }

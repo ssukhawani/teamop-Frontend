@@ -1,10 +1,9 @@
+import DashboardLayout from "Shared/Dashboard/Dashboard";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { decrement, increment } from "Slices/home/counterSlice";
 import tw, { styled } from "twin.macro";
 
 export const StyledApp = styled.div`
-  ${tw`flex justify-center items-center flex-col h-screen bg-gray-200`}
+  ${tw`flex justify-center items-center flex-col  bg-gray-200 h-full`}
 `;
 
 export const Button = styled.button`
@@ -18,34 +17,13 @@ export const Button = styled.button`
   }
 `;
 
-export const Span = styled.span`
-  ${tw`text-2xl`}
-`;
 
 function Home() {
-  const count = useSelector((state) => state.counter.value);
-  const dispatch = useDispatch();
-  
+
   return (
-    <StyledApp>
-      <div>
-        <Span>{count}</Span>
-      </div>
-      <div>
-        <Button
-          aria-label="Increment value"
-          onClick={() => dispatch(increment())}
-        >
-          Increment
-        </Button>
-        <Button
-          aria-label="Decrement value"
-          onClick={() => dispatch(decrement())}
-        >
-          Decrement
-        </Button>
-      </div>
-    </StyledApp>
+    <DashboardLayout>
+      Home
+    </DashboardLayout>
   );
 }
 

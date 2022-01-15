@@ -19,6 +19,7 @@ export const Button = styled.button`
 `;
 
 function Home() {
+  const { Option } = Select;
   const optionsData = [{ label: "one", value: 1 }];
   function onChange(value, option) {
     console.log(option["value"]);
@@ -27,13 +28,7 @@ function Home() {
 
   return (
     <DashboardLayout>
-      <div>
-        <Select
-          placeholder="Select a person"
-          onChange={onChange}
-          options={optionsData}
-        />
-      </div>
+      <div></div>
     </DashboardLayout>
   );
 }

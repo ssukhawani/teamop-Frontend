@@ -3,7 +3,7 @@ import axios from "axios";
 const BASE_URL = "";
 
 export const LoginApi = (request) => {
-  const { email, password } = request;
+  // const { email, password } = request;
   const url = "BASE_URL";
   return axios.get(url);
 };
@@ -72,6 +72,21 @@ export const getItemSlotsApi = async (stationId, date) => {
     const resp = await axios.get(url, {
       params: body,
     });
+    return resp.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const postBookingSlot = async (customerId, evsSlotId, date) => {
+  const url = `${BASE_URL}/v1/evslocator/evs/slot/schedule`;
+  const body = {
+    customerId: customerId,
+    evsSlotId: evsSlotId,
+    date: date,
+  };
+  try {
+    const resp = await axios.post(url, body);
     return resp.data;
   } catch (err) {
     console.error(err);

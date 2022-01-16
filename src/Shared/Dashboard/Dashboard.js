@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import BigNotificationIcon from "Shared/Icons/BigNotificationIcon";
-import BrandIcon from "Shared/Icons/BrandIcon";
 import CrossIcon from "Shared/Icons/CrossIcon";
 import DashboardIcon from "Shared/Icons/Dashboard";
 import LogOutIcon from "Shared/Icons/LogOutIcon";
@@ -9,12 +8,19 @@ import CoolPinkySVG from "Assets/cool_pinky.svg";
 import DownArrow from "Shared/Icons/DownArrow";
 import HamburgerIcon from "Shared/Icons/Hamburger";
 import UserIcon from "Shared/Icons/UserIcon";
-import NotificationIcon from "Shared/Icons/NotificationIcon";
-import Transaction from "Shared/Icons/Transaction";
+
+import { useNavigate } from "react-router-dom";
+import BrandLogo from "Shared/Icons/BrandLogo";
 
 export default function DashboardLayout({ children }) {
   const [show, setShow] = useState(false);
   const [profile, setProfile] = useState(false);
+  const navigate = useNavigate();
+
+  const handelLogOut = () => {
+    localStorage.clear();
+    navigate("/");
+  };
 
   return (
     <>
@@ -22,28 +28,41 @@ export default function DashboardLayout({ children }) {
         <div className="flex flex-no-wrap">
           {/* Sidebar starts */}
           <div className="absolute lg:relative w-64 h-screen shadow bg-gray-100 hidden lg:block">
-            <div className="h-16 w-full flex items-center px-8">
-              <BrandIcon />
+            <div className="h-16 w-full flex flex-col items-center px-8 mt-2">
+              <BrandLogo />{" "}
+              <h4 className="text-indigo-700 text-sm md:text-xl font-semibold">
+                Better Charge
+              </h4>
             </div>
 
             <div className="mt-6 flex flex-col justify-start items-center  px-4 w-full space-y-3 pb-5 ">
-                    <button className="focus:outline-none flex jusitfy-start hover:text-white focus:bg-indigo-700 focus:text-white hover:bg-indigo-700 text-gray-800 rounded py-3 pl-4 items-center space-x-6 w-full ">
-                        <DashboardIcon/>
-                        <p className="text-base leading-4 ">Dashboard</p>
-                    </button>
-                    <button className="flex justify-start items-center space-x-6 hover:text-white focus:bg-indigo-700 focus:text-white hover:bg-indigo-700 text-gray-800 rounded py-3 pl-4   w-full ">
+              <button
+                onClick={() => navigate("/home")}
+                className="bg-indigo-700 text-white focus:outline-none flex jusitfy-start hover:text-white focus:bg-indigo-700 focus:text-white hover:bg-indigo-700  rounded py-3 pl-4 items-center space-x-6 w-full "
+              >
+                <DashboardIcon />
+                <p className="text-base leading-4 ">Dashboard</p>
+              </button>
+              {/* <button  className="flex justify-start items-center space-x-6 hover:text-white focus:bg-indigo-700 focus:text-white hover:bg-indigo-700 text-gray-800 rounded py-3 pl-4   w-full ">
                         <Transaction/>
-                        <p className="text-base leading-4">Transactions</p>
+                        <p className="text-base leading-4">Bookmarks</p>
                     </button>
                     <button className="focus:outline-none flex justify-start items-center space-x-6 hover:text-white focus:bg-indigo-700 focus:text-white hover:bg-indigo-700 text-gray-800 rounded  py-3 pl-4   w-full ">
                         <NotificationIcon/>
                         <p className="text-base leading-4  ">Notifications</p>
-                    </button>
-                    <button className="focus:outline-none flex justify-start items-center space-x-6 hover:text-white focus:bg-indigo-700 focus:text-white hover:bg-indigo-700 text-gray-800 rounded  py-3 pl-4   w-full ">
-                        <LogOutIcon/>
-                        <p className="text-base leading-4  ">Logout</p>
-                    </button>
-                </div>
+                    </button> */}
+              {/* <button onClick={()=>navigate("/evcard")} className="focus:outline-none flex justify-start items-center space-x-6 hover:text-white focus:bg-indigo-700 focus:text-white hover:bg-indigo-700 text-gray-800 rounded  py-3 pl-4   w-full ">
+                    <Transaction/>
+                        <p className="text-base leading-4  ">EV Card</p>
+                    </button> */}
+              <button
+                onClick={handelLogOut}
+                className="focus:outline-none flex justify-start items-center space-x-6 hover:text-white focus:bg-indigo-700 focus:text-white hover:bg-indigo-700 text-gray-800 rounded  py-3 pl-4   w-full "
+              >
+                <LogOutIcon />
+                <p className="text-base leading-4  ">Logout</p>
+              </button>
+            </div>
           </div>
           {/*Mobile responsive sidebar*/}
           <div
@@ -62,8 +81,11 @@ export default function DashboardLayout({ children }) {
               <div className="flex flex-col justify-between h-full w-full">
                 <div>
                   <div className="flex items-center justify-between px-8">
-                    <div className="h-16 w-full flex items-center">
-                      <BrandIcon />
+                    <div className="h-16 w-full flex flex-col items-center px-2 mt-5">
+                      <BrandLogo />{" "}
+                      <h4 className="text-indigo-700 text-sm md:text-xl font-semibold">
+                        Better Charge
+                      </h4>
                     </div>
                     <div
                       id="closeSideBar"
@@ -73,8 +95,8 @@ export default function DashboardLayout({ children }) {
                       <CrossIcon />
                     </div>
                   </div>
-                  <ul aria-orientation="vertical" className=" py-6">
-                    <li className="pl-6 cursor-pointer text-white text-sm leading-3 tracking-normal pb-4 pt-5 text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                  <ul className=" py-6">
+                    <li className="pl-6 cursor-pointer text-sm leading-3 tracking-normal pb-4 pt-5 text-indigo-700 focus:text-indigo-700 focus:outline-none">
                       <div className="flex items-center">
                         <div className="w-6 h-6 md:w-8 md:h-8">
                           <DashboardIcon />
@@ -107,7 +129,7 @@ export default function DashboardLayout({ children }) {
                           className="w-8 h-8 rounded-md"
                         />
                         <p className="md:text-xl text-gray-800 text-base leading-4 ml-2">
-                          Cool Pinky
+                          New User
                         </p>
                       </div>
                       <ul className="flex">
@@ -163,7 +185,7 @@ export default function DashboardLayout({ children }) {
                           <div className="w-2 h-2 rounded-full bg-green-400 border border-white absolute inset-0 mb-0 mr-0 m-auto" />
                         </div>
                       </div>
-                      <p className="text-gray-800 text-sm mx-3">Cool Pinky</p>
+                      <p className="text-gray-800 text-sm mx-3">New User</p>
                       <div className="cursor-pointer text-gray-600">
                         <DownArrow />
                       </div>
@@ -189,4 +211,3 @@ export default function DashboardLayout({ children }) {
     </>
   );
 }
-

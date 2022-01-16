@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import DashboardLayout from "Shared/Dashboard/Dashboard";
 import BookmarkIcon from "Shared/Icons/Bookmark";
 import InfoIcon from "Shared/Icons/InfoIcon";
 import SmallTriangle from "Shared/Icons/SmallTriangle";
 
-function EvCard() {
+function EvCard({index,onClick}) {
     const [tooltipStatus, setTooltipStatus] = useState(0);
 
   const prop = {
@@ -34,11 +33,10 @@ function EvCard() {
   const {evStationName,evStationAddress,rating,city,state,country} = prop
 
   return (
-    <DashboardLayout>
-      <div className="flex h-52  md:h-full md:block md:mx-2 md:w-72 lg:mb-0 md:mb-8 shadow-sm hover:shadow-2xl cursor-pointer border-b-4 hover:border-black rounded-b-2xl">
+      <div className="flex h-52  md:h-full md:block md:mx-2 md:w-72 lg:mb-0 md:mb-8 shadow-sm hover:shadow-2xl cursor-pointer border-b-4 hover:border-black rounded-b-2xl" onClick={onClick}>
         <div className="overflow-hidden rounded-t-md bg-gray-300">
           <img
-            src="https://robohash.org/YOUR-TEXT.png"
+            src={`https://robohash.org/${index}.png`}
             alt="EvCard"
             className="w-full h-44 rounded-t-md hover:scale-125 transform duration-500"
           />
@@ -87,12 +85,11 @@ function EvCard() {
               <h2 className="text-indigo-700 text-xs font-semibold">
               {city} {state}, {country}
               </h2>
-              <h3 className="text-indigo-700 text-sm md:text-xl font-semibold">150/hr</h3>
+              <h3 className="text-indigo-700 text-sm md:text-xl font-semibold">150₹/hr</h3>
             </div>
           </div>
         </div>
       </div>
-    </DashboardLayout>
   );
 }
 

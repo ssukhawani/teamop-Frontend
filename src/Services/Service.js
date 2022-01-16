@@ -51,3 +51,29 @@ export const getListItemsApi = async (stateid, cityid, areaid) => {
     console.error(err);
   }
 };
+
+export const getItemApi = async (id) => {
+  const url = `${BASE_URL}/v1/evslocator/evs/info/${id}`;
+  try {
+    const resp = await axios.post(url);
+    return resp.data;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+export const getItemSlotsApi = async (stationId, date) => {
+  const url = `${BASE_URL}/v1/evslocator/evs/slot/schedule`;
+  const body = {
+    evStationId: stationId.toString(),
+    date: date,
+  };
+  try {
+    const resp = await axios.get(url, {
+      params: body,
+    });
+    return resp.data;
+  } catch (err) {
+    console.error(err);
+  }
+};

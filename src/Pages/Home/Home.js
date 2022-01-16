@@ -2,6 +2,7 @@ import DashboardLayout from "Shared/Dashboard/Dashboard";
 import React from "react";
 import tw, { styled } from "twin.macro";
 import { Select } from "antd";
+import Detail from "Pages/DetailView/Detail";
 
 export const StyledApp = styled.div`
   ${tw`flex justify-center items-center flex-col  bg-gray-200 h-full`}
@@ -28,7 +29,7 @@ function Home() {
 
   return (
     <DashboardLayout>
-      <div></div>
+      <Detail />
     </DashboardLayout>
   );
 }

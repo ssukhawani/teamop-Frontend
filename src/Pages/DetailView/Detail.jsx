@@ -8,16 +8,13 @@ import { useLocation } from "react-router-dom";
 import { Button } from "Pages/Home/Home";
 export default function Detail() {
   const { state } = useLocation();
-  console.log(state, "index");
 
   const optionsData = [];
-  const [options, setOptions] = useState([]);
   const [isloading, setIsLoading] = useState(true);
   const [date, setDate] = useState(moment());
   function onChange(value, option) {
-    console.log(option["value"]);
-
-    console.log(`selected ${option}`);
+    // console.log(option["value"]);
+    // console.log(`selected ${option}`);
   }
 
   function onDateChange(date, dateString) {
@@ -38,17 +35,20 @@ export default function Detail() {
     }
     return null;
   }, []);
+
+  const {evStationName,evStationAddress,rating,city,state:evState,country} = state?.station
+
   return (
     <DashboardLayout>
-      <main className="flex items-center p-10 w-full h-full bg-white">
-        <div className="border-b pt-4 grid md:grid-cols-2 gap-1">
+      <main className="flex items-center p-10 py-6 w-full h-full bg-white">
+        <div className="pt-4 grid md:grid-cols-2 gap-1">
           <div className="flex flex-col w-5/6" >
             <div
               className="flex flex-col w-full object-cover h-3/4 border rounded-lg overflow-hidden"
             >
               <img
                 className="w-full h-full object-cover"
-                src={`https://robohash.org/${state}.png`}
+                src={`https://robohash.org/${state?.index}.png`}
                 alt="nike shoes"
               />
             </div>
@@ -56,15 +56,31 @@ export default function Detail() {
 
           <div className="flex flex-col w-full">
             <div className="flex flex-col gap-4 px-6">
-              <h1 className="capitalize text-xl md:text-4xl font-extrabold">
-                First Ev Station
+              <div className="flex items-center justify-between">
+              <h1 className="capitalize text-xl md:text-4xl font-extrabold pr-3">
+               {evStationName} 
               </h1>
-              <h2 className="text-indigo-700 text-sm md:text-xl font-semibold">150₹/hr</h2>
+              <span className="text-lg font-semibold">{rating}⭐</span>
+              </div>
+              <div className="flex items-center">
+              <h2 className="text-indigo-700 text-sm md:text-xl font-semibold pr-3">150₹/hr</h2>
+              <div className="flex">
+              <div>
+                <p className="text-xs text-gray-600 px-2 py-1 bg-gray-300 rounded-sm">
+                Two wheeler
+                </p>
+              </div>
+              <div className="pl-1  md:pl-2">
+                <p className="text-xs text-gray-600 px-2 py-1 bg-gray-300 rounded-sm">
+                Four wheeler
+                </p>
+              </div>
+            </div>
+              </div>
               <p className="text-xs md:text-base text-gray-500	">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Voluptatibus voluptatum nisi maxime obcaecati impedit? Ratione
-                error eum qui quidem? Veniam accusamus ea repudiandae itaque,
-                explicabo quidem perspiciatis. Culpa, asperiores deserunt.
+                Voluptatibus voluptatum? Ratione
+                explicabo quidem perspiciatis.{city} {evState}, {country}
               </p>
               <Slot>
                 <h2>Book your slot</h2>

@@ -7,6 +7,7 @@ import Detail from "Pages/DetailView/Detail";
 import ProtectedRoute from "Routes/protected-route";
 import SelectComponent from "Shared/Components/Select";
 import EvCard from "Components/EvCard/EvCard.";
+import BookingSucess from "Pages/BookingSucess/BookingSucess";
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
           <Route path="/home" element={<Home />} />
           <Route exact path="/detail/:id" element={<Detail />} />
           <Route path="/evcard" element={<EvCard />}/>
+          <Route path="/success" element={<BookingSucess />}/>
         </Route>
         <Route path="/select" element={<SelectComponent />} />
       </Routes>

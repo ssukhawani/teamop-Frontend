@@ -3,34 +3,10 @@ import BookmarkIcon from "Shared/Icons/Bookmark";
 import InfoIcon from "Shared/Icons/InfoIcon";
 import SmallTriangle from "Shared/Icons/SmallTriangle";
 
-function EvCard({index,onClick}) {
+function EvCard({index,onClick,station}) {
     const [tooltipStatus, setTooltipStatus] = useState(0);
 
-  const prop = {
-    evStationId: 1,
-    evStationName: "Delta EV",
-    evStationAddress: "Postmaster, Post Office RAJKOT CITY",
-    rating: 10,
-    latitude: "13313",
-    longitude: "23413",
-    country: "India",
-    state: "Gujarat",
-    city: "Rajkot",
-    areaCode: "99042",
-    phone: "9904274495",
-    evStationSlots: [
-      {
-        id: 1,
-        isOccupied: true,
-        ChargesPerHour: 100.0,
-        startHours: "00:00:00",
-        endHours: "23:59:00",
-        isAvailable24Hours: true,
-      },
-    ],
-  };
-
-  const {evStationName,evStationAddress,rating,city,state,country} = prop
+  const {evStationName,evStationAddress,rating,city,state,country} = station
 
   return (
       <div className="flex h-52  md:h-full md:block md:mx-2 md:w-72 lg:mb-0 md:mb-8 shadow-sm hover:shadow-2xl cursor-pointer border-b-4 hover:border-black rounded-b-2xl" onClick={onClick}>

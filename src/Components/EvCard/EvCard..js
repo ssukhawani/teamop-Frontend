@@ -6,7 +6,7 @@ import SmallTriangle from "Shared/Icons/SmallTriangle";
 function EvCard({index,onClick,station}) {
     const [tooltipStatus, setTooltipStatus] = useState(0);
 
-  const {evStationName,evStationAddress,rating,city,state,country} = station
+  const {evStationName,evStationAddress,rating,city,state,country,evStationSlots:[obj1]} = station
 
   return (
       <div className="flex h-52  md:h-full md:block md:mx-2 md:w-72 lg:mb-0 md:mb-8 shadow-sm hover:shadow-2xl cursor-pointer border-b-4 hover:border-black rounded-b-2xl" onClick={onClick}>
@@ -61,7 +61,7 @@ function EvCard({index,onClick,station}) {
               <h2 className="text-indigo-700 text-xs font-semibold">
               {city} {state}, {country}
               </h2>
-              <h3 className="text-indigo-700 text-sm md:text-xl font-semibold">150₹/hr</h3>
+              <h3 className="text-indigo-700 text-sm md:text-xl font-semibold">{obj1["ChargesPerHour"]} ₹/hr</h3>
             </div>
           </div>
         </div>

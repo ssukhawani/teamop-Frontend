@@ -11,10 +11,18 @@ import HamburgerIcon from "Shared/Icons/Hamburger";
 import UserIcon from "Shared/Icons/UserIcon";
 import NotificationIcon from "Shared/Icons/NotificationIcon";
 import Transaction from "Shared/Icons/Transaction";
+import { useNavigate } from 'react-router-dom';
 
 export default function DashboardLayout({ children }) {
   const [show, setShow] = useState(false);
   const [profile, setProfile] = useState(false);
+  const navigate = useNavigate();
+
+
+  const handelLogOut=()=>{
+    localStorage.clear();
+    navigate("/");
+  }
 
   return (
     <>
@@ -27,19 +35,23 @@ export default function DashboardLayout({ children }) {
             </div>
 
             <div className="mt-6 flex flex-col justify-start items-center  px-4 w-full space-y-3 pb-5 ">
-                    <button className="focus:outline-none flex jusitfy-start hover:text-white focus:bg-indigo-700 focus:text-white hover:bg-indigo-700 text-gray-800 rounded py-3 pl-4 items-center space-x-6 w-full ">
+                    <button onClick={()=>navigate("/home")} className="focus:outline-none flex jusitfy-start hover:text-white focus:bg-indigo-700 focus:text-white hover:bg-indigo-700 text-gray-800 rounded py-3 pl-4 items-center space-x-6 w-full ">
                         <DashboardIcon/>
                         <p className="text-base leading-4 ">Dashboard</p>
                     </button>
-                    <button className="flex justify-start items-center space-x-6 hover:text-white focus:bg-indigo-700 focus:text-white hover:bg-indigo-700 text-gray-800 rounded py-3 pl-4   w-full ">
+                    {/* <button  onClick={()=>navigate("/transactions")} className="flex justify-start items-center space-x-6 hover:text-white focus:bg-indigo-700 focus:text-white hover:bg-indigo-700 text-gray-800 rounded py-3 pl-4   w-full ">
                         <Transaction/>
                         <p className="text-base leading-4">Transactions</p>
-                    </button>
+                    </button> */}
                     <button className="focus:outline-none flex justify-start items-center space-x-6 hover:text-white focus:bg-indigo-700 focus:text-white hover:bg-indigo-700 text-gray-800 rounded  py-3 pl-4   w-full ">
                         <NotificationIcon/>
                         <p className="text-base leading-4  ">Notifications</p>
                     </button>
-                    <button className="focus:outline-none flex justify-start items-center space-x-6 hover:text-white focus:bg-indigo-700 focus:text-white hover:bg-indigo-700 text-gray-800 rounded  py-3 pl-4   w-full ">
+                    <button onClick={()=>navigate("/evcard")} className="focus:outline-none flex justify-start items-center space-x-6 hover:text-white focus:bg-indigo-700 focus:text-white hover:bg-indigo-700 text-gray-800 rounded  py-3 pl-4   w-full ">
+                    <Transaction/>
+                        <p className="text-base leading-4  ">EV Card</p>
+                    </button>
+                    <button onClick={handelLogOut} className="focus:outline-none flex justify-start items-center space-x-6 hover:text-white focus:bg-indigo-700 focus:text-white hover:bg-indigo-700 text-gray-800 rounded  py-3 pl-4   w-full ">
                         <LogOutIcon/>
                         <p className="text-base leading-4  ">Logout</p>
                     </button>
@@ -73,8 +85,8 @@ export default function DashboardLayout({ children }) {
                       <CrossIcon />
                     </div>
                   </div>
-                  <ul aria-orientation="vertical" className=" py-6">
-                    <li className="pl-6 cursor-pointer text-white text-sm leading-3 tracking-normal pb-4 pt-5 text-indigo-700 focus:text-indigo-700 focus:outline-none">
+                  <ul ariaOrientation="vertical" className=" py-6">
+                    <li className="pl-6 cursor-pointer text-sm leading-3 tracking-normal pb-4 pt-5 text-indigo-700 focus:text-indigo-700 focus:outline-none">
                       <div className="flex items-center">
                         <div className="w-6 h-6 md:w-8 md:h-8">
                           <DashboardIcon />

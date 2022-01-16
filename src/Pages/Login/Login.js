@@ -1,7 +1,6 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch} from "react-redux";
 import {  useNavigate } from "react-router-dom";
-import { LoginApi } from "Services/Login";
 import LoginSvg1 from "Shared/Icons/LoginSvg1";
 import LoginSvg2 from "Shared/Icons/LoginSvg2";
 import LoginSvg3 from "Shared/Icons/LoginSvg3";
@@ -12,9 +11,10 @@ const Login = () => {
   const navigate = useNavigate()
 
   const [userData, setUserData] = useState({
-    email:"",
-    password:""
+    email:"admin@teamop.us",
+    password:"teamopisreallyop"
   })
+
 
   const handelOnChange=(prop)=>(e)=>{
     const {value} = e.target;
@@ -28,6 +28,7 @@ const Login = () => {
     // if (email && password) {
     //   LoginApi(payload);
     // }
+    localStorage.setItem("userData", JSON.stringify(userData));
   };
 
 
@@ -109,7 +110,7 @@ const Login = () => {
                     Remember Me
                   </label>
                 </div>
-                <a class="text-xs text-indigo-600" href="javascript: void(0)">
+                <a class="text-xs text-indigo-600" href="/#">
                   Forgot Password?
                 </a>
               </div>

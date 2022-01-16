@@ -5,9 +5,13 @@ const initialState = {
   password: ""
 }
 
+const userInfoFromLocal = localStorage.getItem("userData")
+    ? JSON.parse(localStorage.getItem("userData"))
+    : {};
+
 export const loginSlice = createSlice({
   name: 'login',
-  initialState,
+  initialState:localStorage.getItem("userData")? userInfoFromLocal:initialState,
   reducers: {
     updateState:(state,{payload}) =>{
         state.email = payload.email;

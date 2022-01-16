@@ -1,56 +1,56 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import {  useNavigate } from "react-router-dom";
-import { LoginApi } from "Services/Login";
+import { useNavigate } from "react-router-dom";
 import LoginSvg1 from "Shared/Icons/LoginSvg1";
 import LoginSvg2 from "Shared/Icons/LoginSvg2";
 import LoginSvg3 from "Shared/Icons/LoginSvg3";
 import { updateState } from "Slices/login/loginSlice";
 
 const Login = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const [userData, setUserData] = useState({
-    email:"",
-    password:""
-  })
+    email:"admin@teamop.us",
+    password:"teamopisreallyop"
+  });
+  
+const handelOnChange=(prop)=>(e)=>{
+  const {value} = e.target;
+  setUserData({...userData,[prop]:value})
+}
 
-  const handelOnChange=(prop)=>(e)=>{
-    const {value} = e.target;
-    setUserData({...userData,[prop]:value})
-  }
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(updateState(userData))
-    navigate("/home")
+    dispatch(updateState(userData));
+    navigate("/home");
     // if (email && password) {
     //   LoginApi(payload);
     // }
+    localStorage.setItem("userData", JSON.stringify(userData));
   };
-
 
   const { email, password } = userData;
 
-  return ( 
+  return (
     <div>
       <section className="bg-white {-- h-screen --}">
         <div className="mx-auto flex lg:justify-center h-full flex-col lg:flex-row">
           <div className="w-full lg:w-1/2 px-2 py-20 sm:py-40 sm:px-12 flex flex-col justify-center items-center bg-indigo-600 relative">
             <div className="absolute left-0 top-0 pl-3 pt-3">
-              <LoginSvg1/>
+              <LoginSvg1 />
             </div>
             <div className="flex relative z-30 flex-col justify-center px-4 md:pr-12">
               <div className="px-2 flex flex-col items-center justify-center">
-              <LoginSvg2/>
+                <LoginSvg2 />
               </div>
               <h3 className="text-4xl pt-8 leading-tight text-white text-center">
                 Better Charge
               </h3>
             </div>
             <div className="absolute right-0 bottom-0">
-              <LoginSvg3/>
+              <LoginSvg3 />
             </div>
           </div>
           <form
@@ -109,7 +109,7 @@ const Login = () => {
                     Remember Me
                   </label>
                 </div>
-                <a class="text-xs text-indigo-600" href="javascript: void(0)">
+                <a class="text-xs text-indigo-600" href="/#">
                   Forgot Password?
                 </a>
               </div>

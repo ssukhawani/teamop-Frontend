@@ -37,3 +37,17 @@ export const getAreaApi = async (stateid, cityid) => {
     console.error(err);
   }
 };
+export const getListItemsApi = async (stateid, cityid, areaid) => {
+  const url = `${BASE_URL}/v1/evslocator/evs/info/`;
+  const body = {
+    state_id: stateid,
+    city_id: cityid,
+    area_code: areaid,
+  };
+  try {
+    const resp = await axios.post(url, body);
+    return resp.data;
+  } catch (err) {
+    console.error(err);
+  }
+};

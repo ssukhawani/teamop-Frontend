@@ -42,7 +42,7 @@ export const getListItemsApi = async (stateid, cityid, areaid) => {
   const body = {
     state_id: stateid,
     city_id: cityid,
-    area: areaid,
+    area_code: areaid,
   };
   try {
     const resp = await axios.post(url, body);

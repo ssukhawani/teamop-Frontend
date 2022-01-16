@@ -54,6 +54,7 @@ export default function SelectComponent() {
           cityValue: option,
           areaValue: null,
         });
+        setAreaOptions([]);
         setIsLoading({ ...isLoading, areaLoading: true });
         Promise.resolve(getAreaApi(option["state_id"], option["key"])).then(
           ({ data }) => {

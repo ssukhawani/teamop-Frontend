@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Select, Spin } from "antd";
 import { Main, SearchBtn } from "./style";
-import { getAreaApi, getCityApi, getStateApi } from "Services/Service.js";
+import {
+  getAreaApi,
+  getCityApi,
+  getStateApi,
+  getListItemsApi,
+} from "Services/Service.js";
 
 export default function SelectComponent() {
   const [states, setStates] = useState([]);
@@ -72,7 +77,13 @@ export default function SelectComponent() {
   };
 
   const handleSearch = () => {
-    // call list item api function here
+    if (areaValue && cityValue && stateValue) {
+      Promise.resolve(
+        getListItemsApi(stateValue.value, cityValue.value, areaValue.value)
+      ).then(({ data }) => {
+        console.log(data, "List item is here");
+      });
+    }
   };
 
   useEffect(() => {
@@ -103,6 +114,7 @@ export default function SelectComponent() {
       />
       <Select
         title="city"
+        disabled={!stateValue}
         showSearch
         placeholder="Search your city"
         onChange={(value, option) => handleInputChange("city", value, option)}
@@ -112,6 +124,7 @@ export default function SelectComponent() {
       />
       <Select
         title="area"
+        disabled={!cityValue}
         showSearch
         placeholder="Search area"
         onChange={(value, option) => handleInputChange("area", value, option)}
@@ -119,7 +132,11 @@ export default function SelectComponent() {
         notFoundContent={isLoading.areaLoading ? <Spin size="small" /> : null}
         value={areaValue}
       />
-      <SearchBtn className="select-search-btn" onClick={handleSearch}>
+      <SearchBtn
+        disabled={!areaValue}
+        className="select-search-btn"
+        onClick={handleSearch}
+      >
         Search
       </SearchBtn>
     </Main>
